@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
 
 
   // const query = "London"
-  // const apikey = "d15e4f2ae60d67eae03d3b341b20b3f1"
+  // const apikey = ""
   // const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apikey + "&units=metric"
 
   // https.get(url, (response) => {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // const query = "London"
-  // const apikey = "d15e4f2ae60d67eae03d3b341b20b3f1"
+  // const apikey = ""
   // const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apikey + "&units=metric"
 
   // https.get(url, (response) => {
