@@ -1,20 +1,12 @@
- const http = require('http');
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
-// app.get("/", function(req,res){
-    
-// })
+app.use(express.json());
 
-app.use('/', require('./routes/compiler'));
-
- app.use('/api/compiler', require('./routes/compiler'));
-
-
+app.use('/api/compiler', require('./routes/compiler'));
 
 app.listen(port, () => {
-    console.log(`server is running at ${port}`);
+    console.log(`server is running at http://localhost:${port}`);
 });

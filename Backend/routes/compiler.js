@@ -1,30 +1,31 @@
-const https = require('https');
 const express = require('express');
 const router = express.Router();
+const fetch = require("node-fetch");
 
-router.get('/', async (req, res) => {
+router.post('/compilerapi', async (req, res) => {
 
+  const {code, language, input} = req.body;
+  // let language = req.language;
+  // let input = req.input;
+  const data = JSON.stringify({
+    code: code,
+    language: language,
+    input: input
+    });
 
-  // const query = "London"
-  // const apikey = ""
-  // const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apikey + "&units=metric"
-
-  // https.get(url, (response) => {
-  //   console.log(response.statusCode)
-  // })
-
-  res.send("running")
-})
-
-router.post('/', async (req, res) => {
-  // const query = "London"
-  // const apikey = ""
-  // const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apikey + "&units=metric"
-
-  // https.get(url, (response) => {
-  //   console.log(response.statusCode)
-  // })
-  res.send();
-})
+  console.log(data)
+  
+  const response = await fetch('https://codexweb.netlify.app/.netlify/functions/enforceCode', {
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/json'
+    },
+    body: data
+  })
+  const jsonResponse = await response.json();
+  console.log(jsonResponse.output);
+  
+  res.json({success: "successfull", output: {jsonResponse}});
+});
 
 module.exports = router;
